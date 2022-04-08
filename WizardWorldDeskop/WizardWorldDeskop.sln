@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardWorldDeskop", "WizardWorldDeskop\WizardWorldDeskop.csproj", "{5676D7D8-C658-4A23-BAFB-A660FEDD4C9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardWorldDesktop", "WizardWorldDesktop\WizardWorldDesktop.csproj", "{5676D7D8-C658-4A23-BAFB-A660FEDD4C9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardWorld.Client", "WizardWorld.Client\WizardWorld.Client.csproj", "{0EE31D91-407E-408A-9C2E-28ACE5DB3607}"
 EndProject
