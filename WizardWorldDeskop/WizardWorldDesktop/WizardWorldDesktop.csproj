@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <RootNamespace>WizardWorldDesktop</RootNamespace>
+        <ApplicationIcon>witch-hat.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
