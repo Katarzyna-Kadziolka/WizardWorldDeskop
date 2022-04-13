@@ -14,4 +14,8 @@
       <PackageReference Include="AdonisUI.ClassicTheme" Version="1.17.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WizardWorld.Client\WizardWorld.Client.csproj" />
+    </ItemGroup>
+
 </Project>

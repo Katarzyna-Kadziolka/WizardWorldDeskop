@@ -8,12 +8,64 @@
                        xmlns:adonisExtensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
                        xmlns:local="clr-namespace:WizardWorldDesktop"
                        mc:Ignorable="d"
-                       Title="Wizard World" Height="450" Width="800">
+                       Title="Wizard World" SizeToContent="WidthAndHeight">
     <Window.Style>
-        <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
+        <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}" />
     </Window.Style>
-    
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ComboBox Margin=" 15 10" Grid.Row="0">
+                <ComboBoxItem IsSelected="True">Elixirs</ComboBoxItem>
+                <ComboBoxItem>Houses</ComboBoxItem>
+                <ComboBoxItem>Ingredients</ComboBoxItem>
+                <ComboBoxItem>Spells</ComboBoxItem>
+                <ComboBoxItem>Wizards</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBox adonisExtensions:WatermarkExtension.Watermark="Search ..." Margin=" 15 5 0 10" Grid.Column="0" />
+            <TextBlock Margin=" 15 5 0 10" Padding="0 3 0 0" TextAlignment="Right" Grid.Column="1">Filters</TextBlock>
+            <CheckBox Margin=" 15 5 15 10" HorizontalAlignment="Left" Grid.Column="2"></CheckBox>
+        </Grid>
+        <Grid Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ListView ItemsSource="{Binding Elixirs}" MaxHeight="600" Margin="10" Name="ElixirsListView" Grid.Column="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Effect" Width="150" DisplayMemberBinding="{Binding Effect}" />
+                        <GridViewColumn Header="Side Effects" Width="150" DisplayMemberBinding="{Binding SideEffects}" />
+                        <GridViewColumn Header="Characteristics" Width="150"
+                                        DisplayMemberBinding="{Binding Characteristics}" />
+                        <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding Time}" />
+                        <GridViewColumn Header="Difficulty" Width="100" DisplayMemberBinding="{Binding Difficulty}" />
+                        <GridViewColumn Header="Ingredients" Width="150" DisplayMemberBinding="{Binding Ingredients}" />
+                        <GridViewColumn Header="Inventors" Width="150" DisplayMemberBinding="{Binding Inventors}" />
+                        <GridViewColumn Header="Manufacturer" Width="150" DisplayMemberBinding="{Binding Manufacturer}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
 
     </Grid>
 </controls:AdonisWindow>

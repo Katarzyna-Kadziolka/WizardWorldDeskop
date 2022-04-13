@@ -17,7 +17,6 @@ public partial class Client {
             if (elixirQuery.Manufacturer is not null)
                 request.AddQueryParameter(nameof(elixirQuery.Manufacturer), elixirQuery.Manufacturer);
         }
-
         return await _client.GetAsync<List<Elixir>>(request);
     }
 }
