@@ -1,4 +1,6 @@
-﻿namespace WizardWorld.Client.Models.Elixirs; 
+﻿using System.ComponentModel;
+
+namespace WizardWorld.Client.Models.Elixirs; 
 
 public enum ElixirDifficulty {
     Unknown = 0,

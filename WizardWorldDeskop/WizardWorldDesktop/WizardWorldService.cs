@@ -5,10 +5,10 @@ using WizardWorld.Client.Services;
 
 namespace WizardWorldDesktop; 
 
-public class Repository {
+public class WizardWorldService {
     private Client _client;
 
-    public Repository() {
+    public WizardWorldService() {
         _client = new Client();
     }
     public async Task<List<Elixir>> LoadElixirs() {

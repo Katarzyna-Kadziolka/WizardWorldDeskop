@@ -24,7 +24,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ComboBox Margin=" 15 10" Grid.Row="0">
+            <ComboBox SelectedValuePath="Content" SelectedValue="{Binding CurrentSection}" 
+                      SelectionChanged="CurrentSection_OnSelectionChanged" Margin=" 15 10" Grid.Row="0">
                 <ComboBoxItem IsSelected="True">Elixirs</ComboBoxItem>
                 <ComboBoxItem>Houses</ComboBoxItem>
                 <ComboBoxItem>Ingredients</ComboBoxItem>
@@ -38,30 +39,109 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBox adonisExtensions:WatermarkExtension.Watermark="Search ..." Margin=" 15 5 0 10" Grid.Column="0" />
-            <TextBlock Margin=" 15 5 0 10" Padding="0 3 0 0" TextAlignment="Right" Grid.Column="1">Filters</TextBlock>
-            <CheckBox Margin=" 15 5 15 10" HorizontalAlignment="Left" Grid.Column="2"></CheckBox>
+            <Button Margin="15 5 0 10" Grid.Column="1">Search</Button>
+            <TextBlock Margin=" 15 5 0 10" Padding="0 3 0 0" TextAlignment="Right" Grid.Column="2">Filters</TextBlock>
+            <CheckBox Margin=" 15 5 15 10" HorizontalAlignment="Left" Grid.Column="3"></CheckBox>
         </Grid>
         <Grid Row="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin=" 15 5 0 10" Grid.Row="0" Grid.Column="0">Name:</TextBlock>
+            <TextBox Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
+            <TextBlock Margin=" 25 5 0 10" Grid.Row="0" Grid.Column="2">Inventors:</TextBlock>
+            <TextBox Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
+            <TextBlock Margin=" 15 5 0 10" Grid.Row="1" Grid.Column="0">Difficulty:</TextBlock>
+            <TextBox Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBlock Margin=" 25 5 0 10" Grid.Row="1" Grid.Column="2">Manufacturer:</TextBlock>
+            <TextBox Margin=" 0 5 15 10" Grid.Row="1" Grid.Column="3"></TextBox>
+            <TextBlock Margin=" 15 5 0 10" Grid.Row="2" Grid.Column="0">Ingredients:</TextBlock>
+            <TextBox Margin=" 0 5 25 10" Grid.Row="2" Grid.Column="1"></TextBox>
+        </Grid>
+        <Grid Row="3">
+            <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ListView ItemsSource="{Binding Elixirs}" MaxHeight="600" Margin="10" Name="ElixirsListView" Grid.Column="0">
+            <ListView ItemsSource="{Binding Elixirs.Data}" MaxHeight="600" Margin="10" Name="ElixirsListView"
+                      Grid.Column="0">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Effect" Width="150" DisplayMemberBinding="{Binding Effect}" />
-                        <GridViewColumn Header="Side Effects" Width="150" DisplayMemberBinding="{Binding SideEffects}" />
-                        <GridViewColumn Header="Characteristics" Width="150"
-                                        DisplayMemberBinding="{Binding Characteristics}" />
-                        <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding Time}" />
-                        <GridViewColumn Header="Difficulty" Width="100" DisplayMemberBinding="{Binding Difficulty}" />
-                        <GridViewColumn Header="Ingredients" Width="150" DisplayMemberBinding="{Binding Ingredients}" />
-                        <GridViewColumn Header="Inventors" Width="150" DisplayMemberBinding="{Binding Inventors}" />
-                        <GridViewColumn Header="Manufacturer" Width="150" DisplayMemberBinding="{Binding Manufacturer}" />
+                        <GridViewColumn Header="Name" Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Name}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Effect" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Effect}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Side Effects" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding SideEffects}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Characteristics" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Characteristics}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Time" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Time}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Difficulty" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Difficulty}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Ingredients" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Ingredients}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Inventors" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Inventors}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Manufacturer" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Manufacturer}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
