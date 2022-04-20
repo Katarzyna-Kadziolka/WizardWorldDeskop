@@ -27,11 +27,15 @@ namespace WizardWorldDesktop {
 
         private void CurrentSection_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (ElixirsListView is not null) {
-               ElixirsListView.Visibility = MainViewModel.CurrentSection == CurrentSectionName.Elixirs
-                               ? Visibility.Visible
-                               : Visibility.Collapsed; 
+                ElixirsListView.Visibility = MainViewModel.CurrentSection == CurrentSectionName.Elixirs
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
             }
-            
+        }
+
+        private void FiltersCheckbox_OnClick(object sender, RoutedEventArgs e) {
+            FiltersGrid.Visibility =
+                FiltersCheckbox.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
