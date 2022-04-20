@@ -39,8 +39,7 @@ namespace WizardWorldDesktop {
 
         private void CurrentSection_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (FiltersCheckbox is not null) {
-                FiltersCheckbox.IsEnabled = true;
-                FiltersCheckbox.IsChecked = false;
+                FiltersCheckbox.RaiseEvent( new RoutedEventArgs(CheckBox.ClickEvent));
             }
             if (ElixirsListView is not null) {
                 ElixirsListView.Visibility = MainViewModel.CurrentSection == CurrentSectionName.Elixirs
@@ -48,22 +47,31 @@ namespace WizardWorldDesktop {
                     : Visibility.Collapsed;
             } 
             if (HousesListView is not null) {
-                if (FiltersCheckbox is not null && MainViewModel.CurrentSection == CurrentSectionName.Houses) {
-                    FiltersCheckbox.IsEnabled = false;
-                }
                 HousesListView.Visibility = MainViewModel.CurrentSection == CurrentSectionName.Houses
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
+            if (IngredientsListView is not null) {
+                IngredientsListView.Visibility = MainViewModel.CurrentSection == CurrentSectionName.Ingredients
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+            if (SpellsListView is not null) {
+                SpellsListView.Visibility = MainViewModel.CurrentSection == CurrentSectionName.Spells
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            } 
+            if (WizardsListView is not null) {
+                WizardsListView.Visibility = MainViewModel.CurrentSection == CurrentSectionName.Wizards
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            } 
         }
 
         private void FiltersCheckbox_OnClick(object sender, RoutedEventArgs e) {
+            CheckIfCurrentSectionHasFilters();
             ElixirFiltersGrid.Visibility =
                 FiltersCheckbox.IsChecked == true && MainViewModel.CurrentSection == CurrentSectionName.Elixirs
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
-            IngredientFiltersGrid.Visibility = 
-                FiltersCheckbox.IsChecked == true && MainViewModel.CurrentSection == CurrentSectionName.Ingredients
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             SpellFiltersGrid.Visibility = 
@@ -74,6 +82,16 @@ namespace WizardWorldDesktop {
                 FiltersCheckbox.IsChecked == true && MainViewModel.CurrentSection == CurrentSectionName.Wizards
                     ? Visibility.Visible
                     : Visibility.Collapsed;
+        }
+        private void CheckIfCurrentSectionHasFilters() {
+            if (MainViewModel.CurrentSection == CurrentSectionName.Ingredients ||
+                MainViewModel.CurrentSection == CurrentSectionName.Houses) {
+                FiltersCheckbox.IsChecked = false;
+                FiltersCheckbox.IsEnabled = false;
+            }
+            else {
+                FiltersCheckbox.IsEnabled = true;
+            }
         }
     }
 }

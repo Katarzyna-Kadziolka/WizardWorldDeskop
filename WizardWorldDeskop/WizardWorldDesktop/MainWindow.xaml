@@ -24,7 +24,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ComboBox SelectedValuePath="Content" SelectedValue="{Binding CurrentSection}" 
+            <ComboBox SelectedValuePath="Content" SelectedValue="{Binding CurrentSection}"
                       SelectionChanged="CurrentSection_OnSelectionChanged" Margin=" 15 10" Grid.Row="0">
                 <ComboBoxItem IsSelected="True">Elixirs</ComboBoxItem>
                 <ComboBoxItem>Houses</ComboBoxItem>
@@ -46,11 +46,12 @@
             <TextBox adonisExtensions:WatermarkExtension.Watermark="Search ..." Margin=" 15 5 0 10" Grid.Column="0" />
             <Button Margin="15 5 0 10" Grid.Column="1">Search</Button>
             <TextBlock Margin=" 15 5 0 10" Padding="0 3 0 0" TextAlignment="Right" Grid.Column="2">Filters</TextBlock>
-            <CheckBox Name="FiltersCheckbox" Click="FiltersCheckbox_OnClick" Margin=" 15 5 15 10" HorizontalAlignment="Left" Grid.Column="3"></CheckBox>
+            <CheckBox Name="FiltersCheckbox" Click="FiltersCheckbox_OnClick" Margin=" 15 5 15 10"
+                      HorizontalAlignment="Left" Grid.Column="3">
+            </CheckBox>
         </Grid>
         <Grid Name="FiltersGrid" Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -81,20 +82,7 @@
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="2" Grid.Column="0">Ingredients:</TextBlock>
                 <TextBox Margin=" 0 5 25 10" Grid.Row="2" Grid.Column="1"></TextBox>
             </Grid>
-            <Grid Visibility="Collapsed" Name="IngredientFiltersGrid" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="5*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="5*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Margin=" 15 5 0 10" Grid.Row="0" Grid.Column="0">Name:</TextBlock>
-                <TextBox Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
-            </Grid>
-            <Grid Visibility="Collapsed" Name="SpellFiltersGrid" Grid.Row="2">
+            <Grid Visibility="Collapsed" Name="SpellFiltersGrid" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -112,7 +100,7 @@
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="1" Grid.Column="0">Incantation:</TextBlock>
                 <TextBox Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
             </Grid>
-            <Grid Visibility="Collapsed" Name="WizardFiltersGrid" Grid.Row="3">
+            <Grid Visibility="Collapsed" Name="WizardFiltersGrid" Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -272,6 +260,104 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock TextWrapping="Wrap" Text="{Binding Traits}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView ItemsSource="{Binding Ingredients.Data}" MaxHeight="600" Margin="10" Name="IngredientsListView"
+                      Visibility="Collapsed" Grid.Column="0" Grid.Row="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="1220">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Name}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView ItemsSource="{Binding Spells.Data}" MaxHeight="600" Margin="10" Name="SpellsListView"
+                      Visibility="Collapsed" Grid.Column="0" Grid.Row="3">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Name}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Incantation" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Incantation}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Effect" Width="350">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Effect}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Can be verbal" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding CanBeVerbal}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Type" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Type}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Light" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Light}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Creator" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Creator}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView ItemsSource="{Binding Wizards.Data}" MaxHeight="600" Margin="10" Name="WizardsListView"
+                      Grid.Column="0" Grid.Row="4">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="First name" Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding FirstName}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Last Name" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding LastName}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Discovered elixirs" Width="950">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Elixirs}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

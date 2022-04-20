@@ -1,5 +1,6 @@
 ﻿using System;
 using WizardWorld.Client.Models.Spells;
+using WizardWorldDesktop.Extensions;
 
 namespace WizardWorldDesktop.ViewModels.Spells; 
 
@@ -19,8 +20,8 @@ public class SpellViewModel {
         Incantation = spell.Incantation;
         Effect = spell.Effect;
         CanBeVerbal = spell.CanBeVerbal;
-        Type = spell.Type.ToString();
-        Light = spell.Light.ToString();
+        Type = spell.Type.ToString().ToSentence();
+        Light = spell.Light.ToString().ToSentence();
         Creator = spell.Creator;
     }
 }
