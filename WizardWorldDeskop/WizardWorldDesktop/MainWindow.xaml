@@ -38,16 +38,18 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="15*" />
+                <ColumnDefinition Width="14*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBox adonisExtensions:WatermarkExtension.Watermark="Search ..." Margin=" 15 5 0 10" Grid.Column="0" />
-            <Button Margin="15 5 0 10" Grid.Column="1">Search</Button>
-            <TextBlock Margin=" 15 5 0 10" Padding="0 3 0 0" TextAlignment="Right" Grid.Column="2">Filters</TextBlock>
+            <Button Click="SearchButton_OnClick" Margin="15 5 0 10" Grid.Column="1">Search</Button>
+            <Button Margin="15 5 0 10" Grid.Column="2">Clear</Button>
+            <TextBlock Margin=" 15 5 0 10" Padding="0 3 0 0" TextAlignment="Right" Grid.Column="3">Filters</TextBlock>
             <CheckBox Name="FiltersCheckbox" Click="FiltersCheckbox_OnClick" Margin=" 15 5 15 10"
-                      HorizontalAlignment="Left" Grid.Column="3">
+                      HorizontalAlignment="Left" Grid.Column="4">
             </CheckBox>
         </Grid>
         <Grid Name="FiltersGrid" Row="2">
@@ -72,15 +74,15 @@
                     <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="0" Grid.Column="0">Name:</TextBlock>
-                <TextBox Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
+                <TextBox Name="ElixirName" Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
                 <TextBlock Margin=" 25 5 0 10" Grid.Row="0" Grid.Column="2">Inventors:</TextBlock>
-                <TextBox Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
+                <TextBox Name="ElixirInventors" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="1" Grid.Column="0">Difficulty:</TextBlock>
-                <TextBox Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
+                <TextBox Name="ElixirDifficulty" Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
                 <TextBlock Margin=" 25 5 0 10" Grid.Row="1" Grid.Column="2">Manufacturer:</TextBlock>
-                <TextBox Margin=" 0 5 15 10" Grid.Row="1" Grid.Column="3"></TextBox>
+                <TextBox Name="ElixirManufacturer" Margin=" 0 5 15 10" Grid.Row="1" Grid.Column="3"></TextBox>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="2" Grid.Column="0">Ingredients:</TextBlock>
-                <TextBox Margin=" 0 5 25 10" Grid.Row="2" Grid.Column="1"></TextBox>
+                <TextBox Name="ElixirIngredients" Margin=" 0 5 25 10" Grid.Row="2" Grid.Column="1"></TextBox>
             </Grid>
             <Grid Visibility="Collapsed" Name="SpellFiltersGrid" Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -94,11 +96,11 @@
                     <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="0" Grid.Column="0">Name:</TextBlock>
-                <TextBox Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
+                <TextBox Name="SpellName" Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
                 <TextBlock Margin=" 25 5 0 10" Grid.Row="0" Grid.Column="2">Type:</TextBlock>
-                <TextBox Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
+                <TextBox Name="SpellType" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="1" Grid.Column="0">Incantation:</TextBlock>
-                <TextBox Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
+                <TextBox Name="SpellIncantation" Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
             </Grid>
             <Grid Visibility="Collapsed" Name="WizardFiltersGrid" Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -113,9 +115,9 @@
                     <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="0" Grid.Column="0">First name:</TextBlock>
-                <TextBox Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
+                <TextBox Name="WizardFirstName" Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
                 <TextBlock Margin=" 25 5 0 10" Grid.Row="0" Grid.Column="2">Last name:</TextBlock>
-                <TextBox Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
+                <TextBox Name="WizardLastName" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
             </Grid>
         </Grid>
         <Grid Row="3">

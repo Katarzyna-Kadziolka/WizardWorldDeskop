@@ -93,5 +93,14 @@ namespace WizardWorldDesktop {
                 FiltersCheckbox.IsEnabled = true;
             }
         }
+
+        private void SearchButton_OnClick(object sender, RoutedEventArgs e) {
+            if (FiltersCheckbox.IsChecked == true) {
+                MainViewModel.SearchWithFilters();
+            }
+            else {
+                MainViewModel.SerchWithoutFilters();
+            }
+        }
     }
 }
