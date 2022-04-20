@@ -26,6 +26,6 @@ public class HouseViewModel {
         Ghost = house.Ghost;
         CommonRoom = house.CommonRoom;
         Heads = string.Join(", ", house.Heads.Select(a => a.ToString()));
-        Traits = string.Join(", ", house.Traits.ToString());
+        Traits = string.Join(", ", house.Traits.Select(a => a.ToString()));
     }
 }
