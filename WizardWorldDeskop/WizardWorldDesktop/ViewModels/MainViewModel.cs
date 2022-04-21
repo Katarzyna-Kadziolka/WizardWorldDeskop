@@ -1,4 +1,5 @@
-﻿using WizardWorldDesktop.ViewModels.Elixirs;
+﻿using System.Linq;
+using WizardWorldDesktop.ViewModels.Elixirs;
 using WizardWorldDesktop.ViewModels.Houses;
 using WizardWorldDesktop.ViewModels.Ingredients;
 using WizardWorldDesktop.ViewModels.Spells;
@@ -15,10 +16,6 @@ public class MainViewModel {
     public string CurrentSection { get; set; } = CurrentSectionName.Elixirs;
 
     public void SearchWithFilters() {
-        throw new System.NotImplementedException();
-    }
-
-    public void SerchWithoutFilters() {
         throw new System.NotImplementedException();
     }
 }

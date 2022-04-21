@@ -38,18 +38,15 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="14*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="16*" />
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBox adonisExtensions:WatermarkExtension.Watermark="Search ..." Margin=" 15 5 0 10" Grid.Column="0" />
-            <Button Click="SearchButton_OnClick" Margin="15 5 0 10" Grid.Column="1">Search</Button>
-            <Button Margin="15 5 0 10" Grid.Column="2">Clear</Button>
-            <TextBlock Margin=" 15 5 0 10" Padding="0 3 0 0" TextAlignment="Right" Grid.Column="3">Filters</TextBlock>
+            <TextBox adonisExtensions:WatermarkExtension.Watermark="Search ..." Name="SearchTextBox"
+                     TextChanged="SearchTextBox_OnTextChanged" Margin=" 15 5 0 10" Grid.Column="0" />
+            <TextBlock Margin=" 15 5 0 10" Padding="0 3 0 0" TextAlignment="Right" Grid.Column="1">Filters</TextBlock>
             <CheckBox Name="FiltersCheckbox" Click="FiltersCheckbox_OnClick" Margin=" 15 5 15 10"
-                      HorizontalAlignment="Left" Grid.Column="4">
+                      HorizontalAlignment="Left" Grid.Column="2">
             </CheckBox>
         </Grid>
         <Grid Name="FiltersGrid" Row="2">
@@ -83,6 +80,17 @@
                 <TextBox Name="ElixirManufacturer" Margin=" 0 5 15 10" Grid.Row="1" Grid.Column="3"></TextBox>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="2" Grid.Column="0">Ingredients:</TextBlock>
                 <TextBox Name="ElixirIngredients" Margin=" 0 5 25 10" Grid.Row="2" Grid.Column="1"></TextBox>
+                <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Click="SearchButton_OnClick" Width="100" HorizontalAlignment="Right" Margin="15 5 0 10"
+                            Grid.Column="0" Grid.Row="0">
+                        Search
+                    </Button>
+                    <Button HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
+                </Grid>
             </Grid>
             <Grid Visibility="Collapsed" Name="SpellFiltersGrid" Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -101,10 +109,20 @@
                 <TextBox Name="SpellType" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="1" Grid.Column="0">Incantation:</TextBlock>
                 <TextBox Name="SpellIncantation" Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
+                <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Click="SearchButton_OnClick" Width="100" HorizontalAlignment="Right" Margin="15 5 0 10"
+                            Grid.Column="0" Grid.Row="0">
+                        Search
+                    </Button>
+                    <Button HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
+                </Grid>
             </Grid>
             <Grid Visibility="Collapsed" Name="WizardFiltersGrid" Grid.Row="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -118,6 +136,17 @@
                 <TextBox Name="WizardFirstName" Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
                 <TextBlock Margin=" 25 5 0 10" Grid.Row="0" Grid.Column="2">Last name:</TextBlock>
                 <TextBox Name="WizardLastName" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
+                <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Click="SearchButton_OnClick" Width="100" HorizontalAlignment="Right" Margin="15 5 0 10"
+                            Grid.Column="0" Grid.Row="0">
+                        Search
+                    </Button>
+                    <Button HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
+                </Grid>
             </Grid>
         </Grid>
         <Grid Row="3">
@@ -339,7 +368,7 @@
                 </ListView.View>
             </ListView>
             <ListView ItemsSource="{Binding Wizards.Data}" MaxHeight="600" Margin="10" Name="WizardsListView"
-                      Grid.Column="0" Grid.Row="4">
+                      Visibility="Collapsed" Grid.Column="0" Grid.Row="4">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="First name" Width="120">
