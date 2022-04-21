@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
 using WizardWorldDesktop.Extensions;
@@ -39,6 +40,9 @@ namespace WizardWorldDesktop {
 		}
 
 		private void CurrentSection_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
+			if (ClearButton is not null) {
+				ClearButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+			}
 			if (FiltersCheckbox is not null) {
 				FiltersCheckbox.RaiseEvent(new RoutedEventArgs(CheckBox.ClickEvent));
 			}
@@ -102,9 +106,7 @@ namespace WizardWorldDesktop {
 		}
 
 		private void SearchButton_OnClick(object sender, RoutedEventArgs e) {
-			if (FiltersCheckbox.IsChecked == true) {
-				MainViewModel.SearchWithFilters();
-			}
+			throw new NotImplementedException();
 		}
 
 		private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e) {
@@ -227,6 +229,59 @@ namespace WizardWorldDesktop {
 					}
 
 					break;
+			}
+		}
+
+		private void ClearButton_OnClick(object sender, RoutedEventArgs e) {
+			SearchTextBox.Clear();
+			ReturnFullLists();
+			ClearFiltersTextBoxes();
+		}
+
+		private void ClearFiltersTextBoxes() {
+			switch (MainViewModel.CurrentSection) {
+				case CurrentSectionName.Elixirs:
+					ElixirDifficulty.Clear();
+					ElixirIngredients.Clear();
+					ElixirInventors.Clear();
+					ElixirManufacturer.Clear();
+					ElixirName.Clear();
+					break;
+				case CurrentSectionName.Houses:
+					break;
+				case CurrentSectionName.Ingredients:
+					break;
+				case CurrentSectionName.Spells:
+					SpellIncantation.Clear();
+					SpellName.Clear();
+					SpellType.Clear();
+					break;
+				case CurrentSectionName.Wizards:
+					WizardFirstName.Clear();
+					WizardLastName.Clear();
+					break;
+			}
+		}
+
+		private void ReturnFullLists() {
+			if (ElixirsListView is not null) {
+				ElixirsListView.ItemsSource = MainViewModel.Elixirs.Data;
+			}
+
+			if (HousesListView is not null) {
+				HousesListView.ItemsSource = MainViewModel.Houses.Data;
+			}
+
+			if (IngredientsListView is not null) {
+				IngredientsListView.ItemsSource = MainViewModel.Ingredients.Data;
+			}
+
+			if (SpellsListView is not null) {
+				SpellsListView.ItemsSource = MainViewModel.Spells.Data;
+			}
+
+			if (WizardsListView is not null) {
+				WizardsListView.ItemsSource = MainViewModel.Wizards.Data;
 			}
 		}
 	}

@@ -89,7 +89,7 @@
                             Grid.Column="0" Grid.Row="0">
                         Search
                     </Button>
-                    <Button HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
+                    <Button Name="ClearButton" Click="ClearButton_OnClick" HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
                 </Grid>
             </Grid>
             <Grid Visibility="Collapsed" Name="SpellFiltersGrid" Grid.Row="1">
@@ -118,7 +118,7 @@
                             Grid.Column="0" Grid.Row="0">
                         Search
                     </Button>
-                    <Button HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
+                    <Button Click="ClearButton_OnClick" HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
                 </Grid>
             </Grid>
             <Grid Visibility="Collapsed" Name="WizardFiltersGrid" Grid.Row="2">
@@ -145,7 +145,7 @@
                             Grid.Column="0" Grid.Row="0">
                         Search
                     </Button>
-                    <Button HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
+                    <Button Click="ClearButton_OnClick" HorizontalAlignment="Right" Width="100" Margin="15 5 15 10" Grid.Column="1" Grid.Row="0">Clear</Button>
                 </Grid>
             </Grid>
         </Grid>

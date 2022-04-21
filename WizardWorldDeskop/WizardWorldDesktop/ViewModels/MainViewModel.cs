@@ -14,8 +14,5 @@ public class MainViewModel {
     public SpellsViewModel Spells { get; set; } = new();
     public WizardsViewModel Wizards { get; set; } = new();
     public string CurrentSection { get; set; } = CurrentSectionName.Elixirs;
-
-    public void SearchWithFilters() {
-        throw new System.NotImplementedException();
-    }
+    
 }
