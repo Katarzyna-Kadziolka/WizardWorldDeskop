@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
 using WizardWorldDesktop.Extensions;
@@ -105,8 +104,38 @@ namespace WizardWorldDesktop {
 			}
 		}
 
-		private void SearchButton_OnClick(object sender, RoutedEventArgs e) {
-			throw new NotImplementedException();
+		private async void SearchButton_OnClick(object sender, RoutedEventArgs e) {
+			switch (MainViewModel.CurrentSection) {
+				case CurrentSectionName.Elixirs:
+					var elixirFilters = MainViewModel.Elixirs.Filters;
+					elixirFilters.Difficulty = ElixirDifficulty.Text.RemoveSpaces();
+					elixirFilters.Ingredient = ElixirIngredient.Text;
+					elixirFilters.Manufacturer = ElixirManufacturer.Text;
+					elixirFilters.Name = ElixirName.Text;
+					elixirFilters.InventorFullName = ElixirInventor.Text;
+					var searchedElixirs = await WizardWorldService.LoadElixirs(elixirFilters);
+					ElixirsListView.ItemsSource = searchedElixirs.Select(a => new ElixirViewModel(a));
+					break;
+				case CurrentSectionName.Houses:
+					break;
+				case CurrentSectionName.Ingredients:
+					break;
+				case CurrentSectionName.Spells:
+					var spellsFilters = MainViewModel.Spells.Filters;
+					spellsFilters.Incantation = SpellIncantation.Text;
+					spellsFilters.Name = SpellName.Text;
+					spellsFilters.Type = SpellType.Text.RemoveSpaces();
+					var searchedSpells = await WizardWorldService.LoadSpells(spellsFilters);
+					SpellsListView.ItemsSource = searchedSpells.Select(a => new SpellViewModel(a));
+					break;
+				case CurrentSectionName.Wizards:
+					var wizardFilters = MainViewModel.Wizards.Filters;
+					wizardFilters.FirstName = WizardFirstName.Text;
+					wizardFilters.LastName = WizardLastName.Text;
+					var searchedWizards = await WizardWorldService.LoadWizards(wizardFilters);
+					WizardsListView.ItemsSource = searchedWizards.Select(a => new WizardViewModel(a));
+					break;
+			}
 		}
 
 		private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e) {
@@ -123,7 +152,7 @@ namespace WizardWorldDesktop {
 							(a.Characteristics is not null &&
 							 a.Characteristics.Contains(text, StringComparison.CurrentCultureIgnoreCase)) ||
 							(a.Difficulty is not null &&
-							 a.Difficulty.ToCamelCase().Contains(text, StringComparison.CurrentCultureIgnoreCase)) ||
+							 a.Difficulty.RemoveSpaces().Contains(text, StringComparison.CurrentCultureIgnoreCase)) ||
 							(a.Effect is not null &&
 							 a.Effect.Contains(text, StringComparison.CurrentCultureIgnoreCase)) ||
 							(a.Ingredients is not null &&
@@ -197,10 +226,10 @@ namespace WizardWorldDesktop {
 							                                   a.Effect.Contains(text,
 								                                   StringComparison.CurrentCultureIgnoreCase)) ||
 							                                  (a.Light is not null &&
-							                                   a.Light.ToCamelCase().Contains(text,
+							                                   a.Light.RemoveSpaces().Contains(text,
 								                                   StringComparison.CurrentCultureIgnoreCase)) ||
 							                                  (a.Type is not null &&
-							                                   a.Type.ToCamelCase().Contains(text,
+							                                   a.Type.RemoveSpaces().Contains(text,
 								                                   StringComparison.CurrentCultureIgnoreCase)) ||
 							                                  (a.CanBeVerbal is not null &&
 							                                   a.CanBeVerbal.ToString().Contains(text,
@@ -241,9 +270,9 @@ namespace WizardWorldDesktop {
 		private void ClearFiltersTextBoxes() {
 			switch (MainViewModel.CurrentSection) {
 				case CurrentSectionName.Elixirs:
-					ElixirDifficulty.Clear();
-					ElixirIngredients.Clear();
-					ElixirInventors.Clear();
+					ElixirDifficulty.SelectedIndex = -1;
+					ElixirIngredient.Clear();
+					ElixirInventor.Clear();
 					ElixirManufacturer.Clear();
 					ElixirName.Clear();
 					break;
@@ -254,7 +283,7 @@ namespace WizardWorldDesktop {
 				case CurrentSectionName.Spells:
 					SpellIncantation.Clear();
 					SpellName.Clear();
-					SpellType.Clear();
+					SpellType.SelectedIndex = -1;
 					break;
 				case CurrentSectionName.Wizards:
 					WizardFirstName.Clear();

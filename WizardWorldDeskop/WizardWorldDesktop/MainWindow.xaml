@@ -72,14 +72,21 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="0" Grid.Column="0">Name:</TextBlock>
                 <TextBox Name="ElixirName" Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
-                <TextBlock Margin=" 25 5 0 10" Grid.Row="0" Grid.Column="2">Inventors:</TextBlock>
-                <TextBox Name="ElixirInventors" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
+                <TextBlock Margin=" 25 5 0 10" Grid.Row="0" Grid.Column="2">Inventor:</TextBlock>
+                <TextBox Name="ElixirInventor" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="1" Grid.Column="0">Difficulty:</TextBlock>
-                <TextBox Name="ElixirDifficulty" Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
+                <ComboBox Name="ElixirDifficulty" Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1">
+                    <ComboBoxItem>Advanced</ComboBoxItem>
+                    <ComboBoxItem>Beginner</ComboBoxItem>
+                    <ComboBoxItem>Moderate</ComboBoxItem>
+                    <ComboBoxItem>One Of A Kind</ComboBoxItem>
+                    <ComboBoxItem>Ordinary Wizarding Level</ComboBoxItem>
+                    <ComboBoxItem>Unknown</ComboBoxItem>
+                </ComboBox>
                 <TextBlock Margin=" 25 5 0 10" Grid.Row="1" Grid.Column="2">Manufacturer:</TextBlock>
                 <TextBox Name="ElixirManufacturer" Margin=" 0 5 15 10" Grid.Row="1" Grid.Column="3"></TextBox>
-                <TextBlock Margin=" 15 5 0 10" Grid.Row="2" Grid.Column="0">Ingredients:</TextBlock>
-                <TextBox Name="ElixirIngredients" Margin=" 0 5 25 10" Grid.Row="2" Grid.Column="1"></TextBox>
+                <TextBlock Margin=" 15 5 0 10" Grid.Row="2" Grid.Column="0">Ingredient:</TextBlock>
+                <TextBox Name="ElixirIngredient" Margin=" 0 5 25 10" Grid.Row="2" Grid.Column="1"></TextBox>
                 <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*" />
@@ -105,10 +112,29 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin=" 15 5 0 10" Grid.Row="0" Grid.Column="0">Name:</TextBlock>
                 <TextBox Name="SpellName" Margin=" 0 5 25 10" Grid.Row="0" Grid.Column="1"></TextBox>
-                <TextBlock Margin=" 25 5 0 10" Grid.Row="0" Grid.Column="2">Type:</TextBlock>
-                <TextBox Name="SpellType" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
-                <TextBlock Margin=" 15 5 0 10" Grid.Row="1" Grid.Column="0">Incantation:</TextBlock>
-                <TextBox Name="SpellIncantation" Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1"></TextBox>
+                <TextBlock Margin=" 15 5 0 10" Grid.Row="0" Grid.Column="2">Incantation:</TextBlock>
+                <TextBox Name="SpellIncantation" Margin=" 0 5 15 10" Grid.Row="0" Grid.Column="3"></TextBox>
+                <TextBlock Margin=" 25 5 0 10" Grid.Row="1" Grid.Column="0">Type:</TextBlock>
+                <ComboBox Name="SpellType" Margin=" 0 5 25 10" Grid.Row="1" Grid.Column="1">
+                    <ComboBoxItem>Binding Magical Contract</ComboBoxItem>
+                    <ComboBoxItem>Charm</ComboBoxItem>
+                    <ComboBoxItem>Conjuration</ComboBoxItem>
+                    <ComboBoxItem>Counter Charm</ComboBoxItem>
+                    <ComboBoxItem>Counter Jinx</ComboBoxItem>
+                    <ComboBoxItem>CounterSpell</ComboBoxItem>
+                    <ComboBoxItem>Curse</ComboBoxItem>
+                    <ComboBoxItem>Dark Arts</ComboBoxItem>
+                    <ComboBoxItem>Dark Charm</ComboBoxItem>
+                    <ComboBoxItem>Healing Spell</ComboBoxItem>
+                    <ComboBoxItem>Hex</ComboBoxItem>
+                    <ComboBoxItem>Jinx</ComboBoxItem>
+                    <ComboBoxItem>Magical Transportation</ComboBoxItem>
+                    <ComboBoxItem>None</ComboBoxItem>
+                    <ComboBoxItem>Spell</ComboBoxItem>
+                    <ComboBoxItem>Transfiguration</ComboBoxItem>
+                    <ComboBoxItem>Untransfiguration</ComboBoxItem>
+                    <ComboBoxItem>Vanishment</ComboBoxItem>
+                </ComboBox>
                 <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*" />

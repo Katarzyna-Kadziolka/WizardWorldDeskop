@@ -7,7 +7,7 @@ public static class StringExtensions {
         return Regex.Replace(s, "(\\B[A-Z])", " $1");
     }
 
-    public static string ToCamelCase(this string s) {
+    public static string RemoveSpaces(this string s) {
         return s.Replace(" ", "");
     }
 }
