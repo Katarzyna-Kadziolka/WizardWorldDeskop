@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using WizardWorldDesktop.ViewModels.Elixirs;
+﻿using WizardWorldDesktop.ViewModels.Elixirs;
 using WizardWorldDesktop.ViewModels.Houses;
 using WizardWorldDesktop.ViewModels.Ingredients;
 using WizardWorldDesktop.ViewModels.Spells;
