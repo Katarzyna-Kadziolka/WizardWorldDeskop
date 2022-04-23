@@ -1,8 +1,6 @@
-﻿using System.Windows;
-
-namespace WizardWorldDesktop {
+﻿namespace WizardWorldDesktop {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application { }
+    public partial class App  { }
 }

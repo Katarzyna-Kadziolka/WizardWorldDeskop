@@ -4,7 +4,7 @@ using WizardWorld.Client.Models.Wizards;
 namespace WizardWorld.Client.Services; 
 
 public partial class Client {
-    public async Task<List<Wizard>> GetWizardsAsync(WizardQuery wizardQuery = null) {
+    public async Task<List<Wizard>?> GetWizardsAsync(WizardQuery? wizardQuery = null) {
         var request = new RestRequest("/Wizards");
         if (wizardQuery is not null) {
             if (wizardQuery.FirstName is not null)

@@ -4,7 +4,7 @@ using WizardWorld.Client.Models.Elixirs;
 namespace WizardWorld.Client.Services;
 
 public partial class Client {
-    public async Task<List<Elixir>> GetElixirsAsync(ElixirQuery elixirQuery = null) {
+    public async Task<List<Elixir>?> GetElixirsAsync(ElixirQuery? elixirQuery = null) {
         var request = new RestRequest("/Elixirs");
         if (elixirQuery is not null) {
             if (elixirQuery.Name is not null) request.AddQueryParameter(nameof(elixirQuery.Name), elixirQuery.Name);

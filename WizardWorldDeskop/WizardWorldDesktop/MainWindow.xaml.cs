@@ -16,34 +16,39 @@ namespace WizardWorldDesktop {
 	/// </summary>
 	public partial class MainWindow {
 		public MainViewModel MainViewModel { get; set; } = new();
-		public WizardWorldService WizardWorldService { get; set; }
+		public WizardWorldService WizardWorldService { get; set; } = new();
 
 		public MainWindow() {
 			InitializeComponent();
 			this.DataContext = MainViewModel;
-			WizardWorldService = new WizardWorldService();
 			Loaded += OnLoaded;
 		}
 
 		private async void OnLoaded(object sender, RoutedEventArgs e) {
 			MainViewModel.Elixirs.Data.AddRange((await WizardWorldService.LoadElixirs())
-			                                    .Select(a => new ElixirViewModel(a)).ToList());
+			                                    .Select(a => new ElixirViewModel(a))
+			                                    .ToList());
 			MainViewModel.Houses.Data.AddRange((await WizardWorldService.LoadHouses())
-			                                   .Select(a => new HouseViewModel(a)).ToList());
+			                                   .Select(a => new HouseViewModel(a))
+			                                   .ToList());
 			MainViewModel.Ingredients.Data.AddRange((await WizardWorldService.LoadIngredients())
-			                                        .Select(a => new IngredientViewModel(a)).ToList());
+			                                        .Select(a => new IngredientViewModel(a))
+			                                        .ToList());
 			MainViewModel.Spells.Data.AddRange((await WizardWorldService.LoadSpells())
-			                                   .Select(a => new SpellViewModel(a)).ToList());
+			                                   .Select(a => new SpellViewModel(a))
+			                                   .ToList());
 			MainViewModel.Wizards.Data.AddRange((await WizardWorldService.LoadWizards())
-			                                    .Select(a => new WizardViewModel(a)).ToList());
+			                                    .Select(a => new WizardViewModel(a))
+			                                    .ToList());
 		}
 
 		private void CurrentSection_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (ClearButton is not null) {
-				ClearButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+				ClearState();
 			}
+
 			if (FiltersCheckbox is not null) {
-				FiltersCheckbox.RaiseEvent(new RoutedEventArgs(CheckBox.ClickEvent));
+				ShowFilters();
 			}
 
 			if (ElixirsListView is not null) {
@@ -78,24 +83,26 @@ namespace WizardWorldDesktop {
 		}
 
 		private void FiltersCheckbox_OnClick(object sender, RoutedEventArgs e) {
-			CheckIfCurrentSectionHasFilters();
-			ElixirFiltersGrid.Visibility =
-				FiltersCheckbox.IsChecked == true && MainViewModel.CurrentSection == CurrentSectionName.Elixirs
-					? Visibility.Visible
-					: Visibility.Collapsed;
-			SpellFiltersGrid.Visibility =
-				FiltersCheckbox.IsChecked == true && MainViewModel.CurrentSection == CurrentSectionName.Spells
-					? Visibility.Visible
-					: Visibility.Collapsed;
-			WizardFiltersGrid.Visibility =
-				FiltersCheckbox.IsChecked == true && MainViewModel.CurrentSection == CurrentSectionName.Wizards
-					? Visibility.Visible
-					: Visibility.Collapsed;
+			ShowFilters();
 		}
 
-		private void CheckIfCurrentSectionHasFilters() {
-			if (MainViewModel.CurrentSection == CurrentSectionName.Ingredients ||
-			    MainViewModel.CurrentSection == CurrentSectionName.Houses) {
+		private void ShowFilters() {
+			SetFilterCheckBoxState(MainViewModel.CurrentSection);
+
+			ElixirFiltersGrid.Visibility = GetVisibility(FiltersCheckbox.IsChecked, CurrentSectionName.Elixirs);
+			SpellFiltersGrid.Visibility = GetVisibility(FiltersCheckbox.IsChecked, CurrentSectionName.Spells);
+			WizardFiltersGrid.Visibility = GetVisibility(FiltersCheckbox.IsChecked, CurrentSectionName.Wizards);
+		}
+
+		private Visibility GetVisibility(bool? isChecked, string section) {
+			return isChecked == true && MainViewModel.CurrentSection == section
+				? Visibility.Visible
+				: Visibility.Collapsed;
+		}
+
+		private void SetFilterCheckBoxState(string currentSection) {
+			if (currentSection == CurrentSectionName.Ingredients ||
+			    currentSection == CurrentSectionName.Houses) {
 				FiltersCheckbox.IsChecked = false;
 				FiltersCheckbox.IsEnabled = false;
 			}
@@ -140,8 +147,9 @@ namespace WizardWorldDesktop {
 
 		private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e) {
 			var text = SearchTextBox.Text;
-			if (text.Length < 3 && text.Length > 0)
-				return;
+
+			if (text.Length is< 3 and> 0) return;
+
 			switch (MainViewModel.CurrentSection) {
 				case CurrentSectionName.Elixirs:
 					if (text.Length == 0) {
@@ -232,7 +240,7 @@ namespace WizardWorldDesktop {
 							                                   a.Type.RemoveSpaces().Contains(text,
 								                                   StringComparison.CurrentCultureIgnoreCase)) ||
 							                                  (a.CanBeVerbal is not null &&
-							                                   a.CanBeVerbal.ToString().Contains(text,
+							                                   a.CanBeVerbal.ToString()!.Contains(text,
 								                                   StringComparison.CurrentCultureIgnoreCase)) ||
 							                                  (a.Name is not null &&
 							                                   a.Name.Contains(text,
@@ -262,8 +270,12 @@ namespace WizardWorldDesktop {
 		}
 
 		private void ClearButton_OnClick(object sender, RoutedEventArgs e) {
+			ClearState();
+		}
+
+		private void ClearState() {
 			SearchTextBox.Clear();
-			ReturnFullLists();
+			ResetListsItemSources();
 			ClearFiltersTextBoxes();
 		}
 
@@ -292,26 +304,12 @@ namespace WizardWorldDesktop {
 			}
 		}
 
-		private void ReturnFullLists() {
-			if (ElixirsListView is not null) {
-				ElixirsListView.ItemsSource = MainViewModel.Elixirs.Data;
-			}
-
-			if (HousesListView is not null) {
-				HousesListView.ItemsSource = MainViewModel.Houses.Data;
-			}
-
-			if (IngredientsListView is not null) {
-				IngredientsListView.ItemsSource = MainViewModel.Ingredients.Data;
-			}
-
-			if (SpellsListView is not null) {
-				SpellsListView.ItemsSource = MainViewModel.Spells.Data;
-			}
-
-			if (WizardsListView is not null) {
-				WizardsListView.ItemsSource = MainViewModel.Wizards.Data;
-			}
+		private void ResetListsItemSources() {
+			ElixirsListView.ItemsSource = MainViewModel.Elixirs.Data;
+			HousesListView.ItemsSource = MainViewModel.Houses.Data;
+			IngredientsListView.ItemsSource = MainViewModel.Ingredients.Data;
+			SpellsListView.ItemsSource = MainViewModel.Spells.Data;
+			WizardsListView.ItemsSource = MainViewModel.Wizards.Data;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 namespace WizardWorldDesktop.ViewModels;
 
-public class CurrentSectionName {
+public static class CurrentSectionName {
     public const string Elixirs = nameof(Elixirs);
     public const string Houses = nameof(Houses);
     public const string Ingredients = nameof(Ingredients);
