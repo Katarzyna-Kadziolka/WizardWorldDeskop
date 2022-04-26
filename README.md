@@ -11,7 +11,7 @@ Simple desktop application write in WPF and .Net 6.0 to browse data from [Wizard
 
 ![Gif](https://github.com/Katarzyna-Kadziolka/WizardWorldDeskop/blob/main/WizardWorldDeskop/Docs/Searching.gif?raw=true)
 
-## Instalation
+## Installation
 1. [Download](https://github.com/Katarzyna-Kadziolka/WizardWorldDeskop/releases/download/v1.0.0/WizardWorld.msi)
 2. Install
 3. Enjoy :)
