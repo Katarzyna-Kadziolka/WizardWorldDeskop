@@ -18,4 +18,10 @@
       <ProjectReference Include="..\WizardWorld.Client\WizardWorld.Client.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="witch-hat.ico">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
