@@ -1,4 +1,4 @@
-# WizardWorldDeskop
+# WizardWorldDesktop
 
 Simple desktop application write in WPF and .Net 6.0 to browse data from [WizardWorldApi](https://github.com/MossPiglets/WizardWorldAPI)
 
